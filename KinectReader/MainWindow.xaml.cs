@@ -108,8 +108,11 @@ namespace KinectReader
                 int x = 1;
             }
 
+            this.Closing += MainWindow_Closing1;
 
         }
+
+      
 
         private void MyConectorHub_stopRecordingEvent(object sender)
         {
@@ -942,9 +945,16 @@ namespace KinectReader
 
 
 
-
-        private void MainWindow_Closing(object sender, CancelEventArgs e)
+        private void MainWindow_Closing1(object sender, CancelEventArgs e)
         {
+            try
+            {
+                myConectorHub.close();
+            }
+            catch
+            {
+
+            }
             if (this.colorFrameReader != null)
             {
                 // ColorFrameReder is IDisposable
@@ -969,8 +979,46 @@ namespace KinectReader
                 this.kinectSensor.Close();
                 this.kinectSensor = null;
             }
+            //Environment.Exit(0);
 
-            
+        }
+    
+        private void MainWindow_Closing(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                myConectorHub.close();
+            }
+            catch
+            {
+
+            }
+            if (this.colorFrameReader != null)
+            {
+                // ColorFrameReder is IDisposable
+                this.colorFrameReader.Dispose();
+                this.colorFrameReader = null;
+            }
+
+            if (volumeHandler != null)
+            {
+                volumeHandler.close();
+            }
+            if (faceFrameHandler != null)
+            {
+                faceFrameHandler.close();
+            }
+            if (bodyFrameHandler != null)
+            {
+                bodyFrameHandler.close();
+            }
+            if (this.kinectSensor != null)
+            {
+                this.kinectSensor.Close();
+                this.kinectSensor = null;
+            }
+            Environment.Exit(0);
+
         }
 
     }
