@@ -95,11 +95,11 @@ namespace KinectReader
             {
                 myConectorHub = new ConnectorHub.ConnectorHub();
 
-                myConectorHub.init();
-                myConectorHub.sendReady();
+                myConectorHub.Init();
+                myConectorHub.SendReady();
                 setValuesNames();
-                myConectorHub.startRecordingEvent += MyConectorHub_startRecordingEvent;
-                myConectorHub.stopRecordingEvent += MyConectorHub_stopRecordingEvent;
+                myConectorHub.StartRecordingEvent += MyConectorHub_startRecordingEvent;
+                myConectorHub.StopRecordingEvent += MyConectorHub_stopRecordingEvent;
 
 
             }
@@ -785,7 +785,7 @@ namespace KinectReader
             names.Add(temp);
 
 
-            myConectorHub.setValuesName(names);
+            myConectorHub.SetValuesName(names);
         }
         #endregion
 
@@ -884,7 +884,7 @@ namespace KinectReader
                     }
                     counter++;
                 }
-                  myConectorHub.storeFrame(values);
+                  myConectorHub.StoreFrame(values);
             }
 
 
@@ -949,7 +949,7 @@ namespace KinectReader
         {
             try
             {
-                myConectorHub.close();
+                myConectorHub.Close();
             }
             catch
             {
@@ -987,7 +987,7 @@ namespace KinectReader
         {
             try
             {
-                myConectorHub.close();
+                myConectorHub.Close();
             }
             catch
             {
